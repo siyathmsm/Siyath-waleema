@@ -157,6 +157,19 @@ body {
   color: var(--gold);
 }
 
+.section a{
+  text-decoration:none;
+}
+
+.section button{
+  padding:10px 20px; 
+  border:none; 
+  background:#c8a97e; 
+  color:white; 
+  border-radius:25px; 
+  cursor:pointer;
+}
+
 .divider {
   width: 80%;
   height: 1px;
@@ -252,6 +265,12 @@ body {
       <h2>Venue</h2>
       <p><b>Motel Apple Five</b></p>
       <p>No.22A, Mill Road, Uppuveli, Trincomalee</p>
+
+      <a href="https://maps.app.goo.gl/zetjrwYeVFAN1kQY7" target="_blank">
+        <button>
+          📍 View Location
+        </button>
+      </a>
       <div class="divider"></div>
     </div>
 
@@ -301,7 +320,7 @@ setInterval(()=>{
   document.getElementById('countdown').innerHTML =
     `<div class="time-box"><span>${days}</span>Days</div>
      <div class="time-box"><span>${hours}</span>Hours</div>
-     <div class="time-box"><span>${mins}</span>Months</div>
+     <div class="time-box"><span>${mins}</span>Minutes</div>
      <div class="time-box"><span>${secs}</span>Seconds</div>`;
 },1000);
 
