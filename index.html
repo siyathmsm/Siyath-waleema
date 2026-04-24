@@ -3,281 +3,318 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Waleema Invitation</title>
+<title>Royal Waleema Invitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
+:root {
+  --gold: #d4af37;
+  --brown: #2b1d17;
+  --light-brown: #5a4034;
+  --bg: #f3ebe5;
+}
+
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at top, #3e2c23, #1a120d);
-    color: #fff;
-    overflow-x: hidden;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--brown);
+  overflow-x: hidden;
 }
 
-/* BACKGROUND PATTERN */
-body::before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/arabesque.png');
-    opacity: 0.07;
-    z-index: -1;
+/* PRELOADER */
+#preloader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #f3ebe5, #d9c2b0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
-/* FLOATING GOLD PARTICLES */
-.particle {
-    position: fixed;
-    width: 4px;
-    height: 4px;
-    background: #d4af37;
-    border-radius: 50%;
-    opacity: 0.6;
-    animation: floatUp linear infinite;
+#preloader h2{
+  font-family:Great Vibes;
+  font-size: 50px;
+  margin: 0;
 }
 
-@keyframes floatUp {
-    from { transform: translateY(100vh); opacity: 0; }
-    30% { opacity: 0.7; }
-    to { transform: translateY(-10vh); opacity: 0; }
+#preloader h5{
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-/* MOON */
-.moon {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-    width: 70px;
-    height: 70px;
-    background: #d4af37;
-    border-radius: 50%;
-    box-shadow: -18px 0 0 8px #1a120d;
+.waleemahp{
+    letter-spacing: 5px;
 }
 
-/* PREMIUM ENVELOPE */
-.envelope-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.ring-img {
+  width: 90px;
+  animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.15); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.1); }
+}
+
+.fade-out { opacity: 0; transition: 1s; }
+
+/* ENVELOPE */
+#envelope-section {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .envelope {
-    width: 320px;
-    height: 200px;
-    background: rgba(212,175,55,0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(212,175,55,0.4);
-    border-radius: 20px;
-    position: relative;
-    cursor: pointer;
-    box-shadow: 0 0 30px rgba(212,175,55,0.2);
-    transition: 0.6s;
+  width: 280px;
+  height: 180px;
+  position: relative;
+  cursor: pointer;
 }
 
-.envelope:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 50px rgba(212,175,55,0.4);
+.envelope .body {
+  background: linear-gradient(145deg, #5a4034, #2b1d17);
+  width: 100%; height: 100%;
+  border-radius: 8px;
 }
 
-/* FLAP */
-.envelope::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-left: 160px solid transparent;
-    border-right: 160px solid transparent;
-    border-bottom: 100px solid rgba(212,175,55,0.3);
-    border-radius: 10px;
+.envelope .flap {
+  position: absolute;
+  width: 100%; height: 100%;
+  background: #3e2c23;
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  transform-origin: top;
+  transition: 1s;
 }
 
-/* OPEN EFFECT */
-.envelope.open {
-    transform: rotateX(90deg) scale(0.9);
-    opacity: 0;
+.envelope.open .flap {
+  transform: rotateX(180deg);
 }
 
-.message {
-    position: absolute;
-    top: 60%;
-    width: 100%;
-    text-align: center;
+.envelope-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.gold { color: #d4af37; }
-
-/* MAIN CONTENT */
-.container {
-    display: none;
-    padding: 20px;
-    text-align: center;
+.envelope-ring img {
+  width: 60px;
+  animation: heartbeat 2s infinite;
 }
 
-/* SECTIONS */
-.section {
-    margin: 60px 0;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 1s;
+/* MAIN */
+#main {
+  display: none;
+  text-align: center;
+  padding: 20px;
 }
 
-.section.show {
-    opacity: 1;
-    transform: translateY(0);
+.hero {
+  background: linear-gradient(rgba(43,29,23,0.7), rgba(43,29,23,0.8)), url('img.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 20px;
+  border-radius: 12px;
 }
 
-.title {
-    font-family: 'Playfair Display';
-    font-size: 30px;
-    color: #d4af37;
+.hero h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 50px;
+  margin: 0;
 }
 
-/* IMAGE */
-.couple img {
-    width: 90%;
-    max-width: 320px;
-    border-radius: 20px;
+.hero p {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 2px;
 }
 
-/* COUNTDOWN */
+/* 🔥 NEW LUXURY INFO BOX */
+.info-box {
+  margin: 40px auto;
+  max-width: 650px;
+  background: rgba(255,255,255,0.6);
+  border: 2px solid var(--gold);
+  border-radius: 15px;
+  padding: 25px;
+  backdrop-filter: blur(6px);
+}
+
+/* SECTION */
+.section h2 {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+}
+
+.divider {
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 20px auto;
+}
+
+/* COUNTDOWN BOXES */
 .countdown {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-.box {
-    background: rgba(255,255,255,0.05);
-    padding: 15px;
-    border-radius: 10px;
-    min-width: 60px;
+.time-box {
+  background: var(--brown);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  min-width: 60px;
 }
 
-/* BUTTON */
-.btn {
-    background: #d4af37;
-    color: black;
-    padding: 12px 20px;
-    margin: 10px;
-    border-radius: 30px;
-    text-decoration: none;
+.time-box span {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
 }
 
-/* MAP */
-iframe {
-    width: 100%;
-    height: 250px;
-    border-radius: 10px;
-    border: none;
+/* PETALS */
+.petal {
+  position: fixed;
+  top: -20px;
+  width: 10px;
+  height: 10px;
+  background: #c89b7b;
+  border-radius: 50%;
+  animation: fall linear forwards;
 }
 
-/* MOBILE */
-@media(max-width:600px){
-    .title { font-size: 24px; }
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="moon"></div>
-
-<!-- PARTICLES -->
-<script>
-for(let i=0;i<40;i++){
-    let p = document.createElement("div");
-    p.className="particle";
-    p.style.left = Math.random()*100+"%";
-    p.style.animationDuration = (6 + Math.random()*6)+"s";
-    p.style.animationDelay = Math.random()*5+"s";
-    document.body.appendChild(p);
-}
-</script>
+<!-- PRELOADER -->
+<div id="preloader">
+  <h5 class="waleemahp">WALEEMA INVITATION</h5>
+  <img src="ring.png" class="ring-img">
+  <h2>Siyath &nbsp; & &nbsp; Simha</h2>
+  <h5 class="datehp">17th May, 2026 (Sunday)</h5>
+</div>
 
 <!-- ENVELOPE -->
-<div class="envelope-container" id="envelopeBox">
-    <div class="envelope" onclick="openInvite()">
-        <div class="message">
-            💌 You are invited to a Waleema<br><br>
-            <span class="gold">Tap to Open</span>
-        </div>
+<div id="envelope-section">
+  <h3>You have received a waleema invitation</h3>
+  <div class="envelope" onclick="openEnvelope(this)">
+    <div class="flap"></div>
+    <div class="body"></div>
+
+    <div class="envelope-ring">
+      <img src="ring.png">
     </div>
+  </div>
+  <p> - Tap to open your invitation - </p>
 </div>
 
 <!-- MAIN -->
-<div class="container" id="main">
+<div id="main">
+  <div class="hero">
+    <h1>Mr.Mohamed Siyath</h1>
+    <p>&</p>
+    <h1>Mrs.Fathima Simha</h1>
+    <p>Waleema Ceremony</p>
+  </div>
 
-    <div class="section couple">
-        <h1 class="title">Waleema Invitation</h1>
-        <img src="img.jpg">
-        <h2 class="gold">Mr. Mohamed Siyath</h2>
-        <h3>&</h3>
-        <h2 class="gold">Mrs. Fathima Simha</h2>
+  <!-- 🔥 WRAPPED SECTION -->
+  <div class="info-box">
+
+    <div class="section">
+      <h2>Date</h2>
+      <p>Sunday, May 17, 2026</p>
+      <div class="divider"></div>
     </div>
 
     <div class="section">
-        <h2 class="title">Event Details</h2>
-        <p>📅 17 May 2026</p>
-        <p>⏰ 12:30 PM</p>
-        <p>📍 Motel Apple Five</p>
+      <h2>Venue</h2>
+      <p><b>Motel Apple Five</b></p>
+      <p>No.22A, Mill Road, Uppuveli, Trincomalee</p>
+      <div class="divider"></div>
     </div>
 
     <div class="section">
-        <h2 class="title">Countdown</h2>
-        <div class="countdown">
-            <div class="box"><span id="d"></span><br>Days</div>
-            <div class="box"><span id="h"></span><br>Hours</div>
-            <div class="box"><span id="m"></span><br>Min</div>
-            <div class="box"><span id="s"></span><br>Sec</div>
-        </div>
-    </div>
-
-    <!--
-    <div class="section">
-        <h2 class="title">Location</h2>
-        <iframe src="https://maps.google.com/maps?q=Motel Apple Five&output=embed"></iframe>
+      <h2>Time</h2>
+      <p>12:30 PM onwards</p>
+      <div class="divider"></div>
     </div>
 
     <div class="section">
-        <a href="#" class="btn">💌 RSVP</a>
-        <a href="https://wa.me/?text=You are invited to our Waleema 💛" class="btn">📤 Share</a>
+      <h2>Countdown</h2>
+      <div class="countdown" id="countdown"></div>
     </div>
 
-    -->
-
+  </div>
 </div>
 
 <script>
-function openInvite(){
-    document.querySelector('.envelope').classList.add('open');
-    setTimeout(()=>{
-        document.getElementById('envelopeBox').style.display="none";
-        document.getElementById('main').style.display="block";
-        reveal();
-    },700);
+setTimeout(()=>{
+  document.getElementById('preloader').classList.add('fade-out');
+  setTimeout(()=>{
+    document.getElementById('preloader').style.display='none';
+    document.getElementById('envelope-section').style.display='flex';
+  },1000);
+},2500);
+
+function openEnvelope(el){
+  el.classList.add('open');
+  setTimeout(()=>{
+    document.getElementById('envelope-section').style.display='none';
+    document.getElementById('main').style.display='block';
+  },1200);
 }
 
-function reveal(){
-    document.querySelectorAll('.section').forEach(sec=>{
-        sec.classList.add('show');
-    });
-}
-
-/* COUNTDOWN */
-let date = new Date("May 17, 2026 12:30:00").getTime();
+/* COUNTDOWN DD:HH:MM:SS */
+const eventDate = new Date("May 17, 2026 12:30:00").getTime();
 
 setInterval(()=>{
-let now = new Date().getTime();
-let gap = date - now;
+  const now = new Date().getTime();
+  const d = eventDate - now;
 
-document.getElementById("d").innerText = Math.floor(gap/(1000*60*60*24));
-document.getElementById("h").innerText = Math.floor((gap/(1000*60*60))%24);
-document.getElementById("m").innerText = Math.floor((gap/(1000*60))%60);
-document.getElementById("s").innerText = Math.floor((gap/1000)%60);
+  const days = Math.floor(d/(1000*60*60*24));
+  const hours = Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  const mins = Math.floor((d%(1000*60*60))/(1000*60));
+  const secs = Math.floor((d%(1000*60))/1000);
+
+  document.getElementById('countdown').innerHTML =
+    `<div class="time-box"><span>${days}</span>Days</div>
+     <div class="time-box"><span>${hours}</span>Hours</div>
+     <div class="time-box"><span>${mins}</span>Months</div>
+     <div class="time-box"><span>${secs}</span>Seconds</div>`;
 },1000);
+
+/* PETALS */
+function petal(){
+  const p=document.createElement('div');
+  p.className='petal';
+  p.style.left=Math.random()*100+'vw';
+  p.style.animationDuration=(3+Math.random()*3)+'s';
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),6000);
+}
+setInterval(petal,300);
 </script>
 
 </body>
